@@ -1,36 +1,35 @@
-'use strict';
-
 const express = require('express');
+
 const bodyParser = require('body-parser');
 
 const app = express();
 const jsonParser = bodyParser.json();
 
 module.exports = (db) => {
-
-  /** 
+  /**
    * @swagger
    * /health:
    *  get:
-   *   description: Use it to check the health of the server.The API returns healthy if server is up and running.
-   *   responses: 
+   *   description: Use it to check the health of the server.
+   *                The API returns healthy if server is up and running.
+   *   responses:
    *     '200':
    *        description: Successfull! Server is in healthy condition.
    */
   app.get('/health', (req, res) => res.send('Healthy'));
 
-
-   
-   /** 
+  /**
    * @swagger
    * /rides:
    *  post:
-   *   description: Input info related to your ride i.e. latitude , longitude, rider-info, driver-info etc.
-   *                The API first validates the input, if valid inserts the info into the database into their respective rows
-   *                else throws the error code and message.
-   *                
-   *   responses: 
-   *     '200': 
+   *   description: Input info related to your ride i.e. latitude ,
+   *                longitude, rider-info, driver-info etc.
+   *                The API first validates the input, if valid inserts the info
+   *                into the database into their respective rows else throws
+   *                the error code and message.
+   *
+   *   responses:
+   *     '200':
    *        description: returns all the availiable rides in json placeholder format.
    *     '400':
    *        description: {error code , error message}
@@ -83,6 +82,7 @@ module.exports = (db) => {
     const values = [req.body.start_lat, req.body.start_long, req.body.end_lat,
       req.body.end_long, req.body.rider_name, req.body.driver_name, req.body.driver_vehicle];
 
+    // eslint-disable-next-line consistent-return
     db.run('INSERT INTO Rides(startLat, startLong, endLat, endLong, riderName, driverName, driverVehicle) VALUES (?, ?, ?, ?, ?, ?, ?)', values, (err) => {
       if (err) {
         return res.send({
@@ -109,19 +109,19 @@ module.exports = (db) => {
       message: 'Unknown error',
     });
   });
-  
-  /** 
+
+  /**
    * @swagger
    * /rides:
    *  get:
    *   description: The API searches for all the availible riders into the database rows
    *                and if found return them else returns error with code and message.
-   *   responses: 
-   *     '200': 
+   *   responses:
+   *     '200':
    *        description: returns all the availiable rides in json format.
    *     '404':
    *        description: {error code , error message}
-   */ 
+   */
 
   app.get('/rides', (req, res) => {
     db.all('SELECT * FROM Rides', (err, rows) => {
@@ -142,18 +142,18 @@ module.exports = (db) => {
       return res.send(rows);
     });
   });
-  
-   /** 
+
+  /**
    * @swagger
    * /rides/:id:
    *  get:
    *   description: Use it to search for a specific availiable ride.
-   *   responses: 
-   *     '200': 
-   *        description: Returns particular ride if availible in json.
+   *   responses:
+   *     '200':
+   *        description: returns particular ride if availible in json.
    *     '404':
    *        description: {error code , error message}
-   */  
+   */
 
   app.get('/rides/:id', (req, res) => {
     db.all(`SELECT * FROM Rides WHERE rideID='${req.params.id}'`, (err, rows) => {
