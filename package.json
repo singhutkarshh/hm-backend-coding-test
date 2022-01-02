@@ -7,10 +7,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha tests",
+    "test": "nyc --reporter=lcov --reporter=text-lcov mocha tests",
     "start": "node index.js",
     "lint": "eslint .  --ext .js",
-    "lint-fix": "eslint --fix .  --ext .js"
+    "lint-fix": "eslint --fix .  --ext .js",
+    "prepare": "husky install"
   },
   "keywords": [
     "Hodomojo"
@@ -22,14 +23,20 @@
     "express": "^4.16.4",
     "sqlite3": "^4.0.6",
     "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.3.0"
+    "swagger-ui-express": "^4.3.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.3",
+    "husky": "^7.0.4",
     "jsdoc": "^3.6.7",
+    "lint-staged": "^12.1.4",
     "mocha": "^6.1.4",
     "supertest": "^4.0.2"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
   }
 }
