@@ -36,6 +36,6 @@
     "supertest": "^4.0.2"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "*.js": ["mocha tests", "eslint --cache --fix"]
   }
 }
