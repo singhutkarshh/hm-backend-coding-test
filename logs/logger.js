@@ -13,7 +13,7 @@ const buildLogger = () => {
     ),
     defaultMeta: { service: 'user-service' },
     transports: [
-      new transports.File({ filename: './logs/info.logs' })],
+      new transports.File({ filename: './logs/error.logs' })],
   });
   return logger;
 };

@@ -20,6 +20,7 @@
     <h1 class="page-title" id="page-title">Getting Started</h1>
 
     <h3></h3>
+    <section style="margin-left: 2rem;">
     <h2 id="overview">Overview</h2>
     <h3></h3>
     <p>This module's primary goal is to provide fast and smooth travel services to our customers</p>
@@ -77,9 +78,43 @@
     <p><b>Response:</b> </p>
     <p>200 - returns particular ride if availible in json placeholder.</p> 
     <p>404(Not found) - error code and error message</p>
+    <hr>
+    <h3></h3>
+    <h3></h3>
+    <h3></h3>
 
+    <h2 id="tooling">Tooling  </h2>
+    <p>Several tooling methods have been used in order to keep code quality consistent and error free.<br> These tooling include - </p>
+    <h3></h3>
+    <h3></h3>
+    <h5 id="eslint">1. Eslint</h5>
+    <p>Eslint combined with prettier ensures that a same consistency is maintained in the code and the module is bug free.</p>
+    <p><b>npm run lint</b> checks for the errors/warnings in the code while <b>npm run lint --fix</b> fixes most of the errors that is automatically fixable.</p>
+    <p>Eslint runs itself on commiting changes on the files changed and on push runs on the whole module.</p>
+    <h3></h3>
+    <h3></h3>
+    <h5 id="nyc">2. nyc </h5>
+    <p>nyc paired with tests have been used to generate detailed coverage on the tests that is 
+        <br>save in coverage directory and can be view in web format.</p>
+    <p><b>npm test</b> to run tests and generate coverage</p>
+    <h3></h3>
+    <h3></h3>
+    <h5 id="githooks">3. Git hooks </h5>
+    <p>Git hooks like pre-push and pre-commit have been imlemented using lint-staged and husky.</p>
+    <p>Before commiting changes Eslint runs itself on the files changed and on push runs on the whole module.</p>
+    <h3></h3>
+    <h3></h3>
+    <h5 id="winston">4. Winston </h5>
+    <p>All logs are generated in error.logs file in logs directory using winston.</p>
 
-
+    <h3></h3>
+    <h3></h3>
+    <h3></h3>
+    <h2 id="pagination">Pagination</h2>
+    <h3></h3>
+    <h3></h3>
+    <p>Pagination has been added to <b>GET rides</b> API in app.js file in src directory along with tests(in tests directory).</p>
+</section>
 </div>
 
 <nav>
@@ -87,6 +122,14 @@
     <p><a href="#overview">Overview</a></p>
     <p><a href="#setup">Setting up the project</a></p>
     <p><a href="#apis">APIs and their Description</a></p>
+    <p><a href="#tooling">Tooling</a></p>
+    <div style="margin-left: 2rem;">
+        <p><a href="#eslint">Eslint</a></p>
+        <p><a href="#nyc">Nyc</a></p>
+        <p><a href="#githooks">Git hoooks(pre-push/pre-commit)</a></p>
+        <p><a href="#winston">Winston</a></p>
+    </div>
+    <p><a href="#pagination">Pagination</a></p>
 
 </nav>
 

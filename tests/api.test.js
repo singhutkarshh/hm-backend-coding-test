@@ -57,11 +57,12 @@ describe('API tests', () => {
     });
   });
   // pagination check testcase
-  describe('GET /rides', () => {
+  describe('GET /rides?page=?&limit=?', () => {
+    const page = 1;
+    const limit = 3;
     it('should force pagination and return limited availiable rides in json placeholder format with status code 200', (done) => {
       request(app)
-        .get('/rides')
-        .expect({ page: 1, limit: 3 })
+        .get(`/rides?page=${page}&limit=${limit}`)
         .expect('Content-Type', /json/)
         .expect(200, done);
     });

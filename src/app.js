@@ -90,7 +90,7 @@ module.exports = (db) => {
       req.body.end_long, req.body.rider_name, req.body.driver_name, req.body.driver_vehicle];
 
     // eslint-disable-next-line consistent-return
-    db.run('INSERT INTO Rides(startLat, startLong, endLat, endLong, riderName, driverName, driverVehicle) VALUES (?, ?, ?, ?, ?, ?, ?)', values, (err) => {
+    db.run('INSERT INTO Rides(startLat, startLong, endLat, endLong, riderName, driverName, driverVehicle) VALUES (?, ?, ?, ?, ?, ?, ?)', values, async (err) => {
       if (err) {
         logger.error({ error_code: 'SERVER_ERROR' });
         return res.send({
@@ -101,17 +101,18 @@ module.exports = (db) => {
 
       /* replaced err in the following line with error
        since err was already defined in the upperscope at line 60 */
-      db.all('SELECT * FROM Rides WHERE rideID = ?', this.lastID, (error, rows) => {
-        if (error) {
-          logger.error({ error_code: 'SERVER_ERROR' });
-          return res.send({
-            error_code: 'SERVER_ERROR',
-            message: 'Unknown error',
-          });
-        }
+      try {
+        const rows = await db.all('SELECT * FROM Rides WHERE rideID = ?', this.lastID);
+
         // added return statement
         return res.send(rows);
-      });
+      } catch (error) {
+        logger.error({ error_code: 'SERVER_ERROR' });
+        return res.send({
+          error_code: 'SERVER_ERROR',
+          message: 'Unknown error',
+        });
+      }
     });
     logger.error({ error_code: 'SERVER_ERROR' });
     return res.send({
@@ -133,7 +134,7 @@ module.exports = (db) => {
    *        description: {error code , error message}
    */
 
-  app.get('/rides', (req, res) => {
+  app.get('/rides', async (req, res) => {
     // included pagination
     const page = parseInt(req.query.page, 10);
     const limit = parseInt(req.query.limit, 10);
@@ -142,17 +143,8 @@ module.exports = (db) => {
     const endIndex = page * limit;
 
     const results = {};
-
-    // eslint-disable-next-line consistent-return
-    db.all('SELECT * FROM Rides', (err, rows) => {
-      if (err) {
-        logger.error({ error_code: 'SERVER_ERROR' });
-        return res.send({
-          error_code: 'SERVER_ERROR',
-          message: 'Unknown error',
-        });
-      }
-
+    try {
+      const rows = await db.all('SELECT * FROM Rides');
       if (rows.length === 0) {
         logger.error({ error_code: 'RIDES_NOT_FOUND_ERROR' });
         return res.send({
@@ -173,8 +165,14 @@ module.exports = (db) => {
         };
       }
       results.results = rows.slice(startIndex, endIndex);
-      res.status(200).send(results);
-    });
+      return res.status(200).send(results);
+    } catch (err) {
+      logger.error({ error_code: 'SERVER_ERROR' });
+      return res.send({
+        error_code: 'SERVER_ERROR',
+        message: 'Unknown error',
+      });
+    }
   });
 
   /**
@@ -189,16 +187,9 @@ module.exports = (db) => {
    *        description: {error code , error message}
    */
 
-  app.get('/rides/:id', (req, res) => {
-    db.all(`SELECT * FROM Rides WHERE rideID='${req.params.id}'`, (err, rows) => {
-      if (err) {
-        logger.error({ error_code: 'SERVER_ERROR' });
-        return res.send({
-          error_code: 'SERVER_ERROR',
-          message: 'Unknown error',
-        });
-      }
-
+  app.get('/rides/:id', async (req, res) => {
+    try {
+      const rows = await db.all(`SELECT * FROM Rides WHERE rideID='${req.params.id}'`);
       if (rows.length === 0) {
         logger.error({ error_code: 'RIDES_NOT_FOUND_ERROR' });
         return res.send({
@@ -208,7 +199,13 @@ module.exports = (db) => {
       }
       // added return statement
       return res.send(rows);
-    });
+    } catch (err) {
+      logger.error({ error_code: 'SERVER_ERROR' });
+      return res.send({
+        error_code: 'SERVER_ERROR',
+        message: 'Unknown error',
+      });
+    }
   });
 
   return app;
