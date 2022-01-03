@@ -134,6 +134,16 @@ module.exports = (db) => {
    */
 
   app.get('/rides', (req, res) => {
+    // included pagination
+    const page = parseInt(req.query.page, 10);
+    const limit = parseInt(req.query.limit, 10);
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const results = {};
+
+    // eslint-disable-next-line consistent-return
     db.all('SELECT * FROM Rides', (err, rows) => {
       if (err) {
         logger.error({ error_code: 'SERVER_ERROR' });
@@ -150,8 +160,20 @@ module.exports = (db) => {
           message: 'Could not find any rides',
         });
       }
-      // added return statement
-      return res.send(rows);
+      if (endIndex < rows.length) {
+        results.next = {
+          page: page + 1,
+          limit,
+        };
+      }
+      if (startIndex > 0) {
+        results.previous = {
+          page: page - 1,
+          limit,
+        };
+      }
+      results.results = rows.slice(startIndex, endIndex);
+      res.status(200).send(results);
     });
   });
 
