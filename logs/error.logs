@@ -1,0 +1,22 @@
+{"level":"info","message":"App started and listening on port 8010","service":"user-service","timestamp":"2022-01-03T07:57:05.505Z"}
+{"level":"info","message":"App started and listening on port 8010","service":"user-service","timestamp":"2022-01-03T08:56:34.919Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T08:57:01.931Z"}
+{"level":"info","message":"App started and listening on port 8010","service":"user-service","timestamp":"2022-01-03T09:00:39.195Z"}
+{"level":"info","message":"App started and listening on port 8010","service":"user-service","timestamp":"2022-01-03T09:19:15.078Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T09:20:18.508Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T09:20:18.517Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T09:20:18.527Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T09:20:18.535Z"}
+{"level":"info","message":"App started and listening on port 8010","service":"user-service","timestamp":"2022-01-03T13:59:08.667Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T13:59:41.231Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T13:59:41.237Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T13:59:41.240Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T13:59:41.246Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T14:04:19.500Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T14:04:19.526Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T14:04:19.526Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T14:04:19.540Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T14:05:38.066Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T14:05:38.078Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T14:05:38.083Z"}
+{"level":"error","message":{"error_code":"RIDES_NOT_FOUND_ERROR"},"service":"user-service","timestamp":"2022-01-03T14:05:38.089Z"}
