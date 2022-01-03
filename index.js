@@ -37,9 +37,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(jsonParser);
 app.use(appRoutes);
 
+// logger setup
+const logger = require('./logs/index');
+
+// logger.warn('text warn');
+// logger.error('text error');
+
 db.serialize(() => {
   buildSchemas(db);
-
+  // console logs changed into winston logs
   // eslint-disable-next-line no-console
-  app.listen(port, () => console.log(`App started and listening on port ${port}`));
+  app.listen(port, () => logger.info(`App started and listening on port ${port}`));
 });
